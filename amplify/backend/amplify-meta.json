@@ -1,0 +1,60 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-menumax-staging-115308-authRole",
+      "UnauthRoleArn": "arn:aws:iam::306782419958:role/amplify-menumax-staging-115308-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::306782419958:role/amplify-menumax-staging-115308-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-menumax-staging-115308-deployment",
+      "UnauthRoleName": "amplify-menumax-staging-115308-unauthRole",
+      "StackName": "amplify-menumax-staging-115308",
+      "StackId": "arn:aws:cloudformation:eu-north-1:306782419958:stack/amplify-menumax-staging-115308/ee0cb6d0-d603-11ed-9bbc-0635e2c8ee92",
+      "AmplifyAppId": "d6fvtf3d30i2d"
+    }
+  },
+  "auth": {
+    "Menumax": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "NAME"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "UserPoolId": "eu-north-1_iYvbuFa8v",
+        "AppClientIDWeb": "7abm0416naa9aq28v7djtj7iq2",
+        "AppClientID": "1rgfhj48qvqlsc4bgpa8o1l0ha",
+        "IdentityPoolId": "eu-north-1:41a71eac-4691-475b-9491-8408d0af0cf3",
+        "UserPoolArn": "arn:aws:cognito-idp:eu-north-1:306782419958:userpool/eu-north-1_iYvbuFa8v",
+        "IdentityPoolName": "testAuthIdentityPool__staging",
+        "UserPoolName": "Menumax"
+      },
+      "lastPushTimeStamp": "2023-04-10T18:53:27.110Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-menumax-staging-115308-deployment/amplify-cfn-templates/auth/Menumax-cloudformation-template.json",
+        "logicalId": "authMenumax"
+      }
+    }
+  }
+}

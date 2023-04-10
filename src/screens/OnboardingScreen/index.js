@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
 const OnboardingScreen = () => {
   return (
@@ -25,10 +26,12 @@ const OnboardingScreen = () => {
         </Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.signUpButton}>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")} 
+             style={styles.signUpButton}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.signInButton}>
+          <TouchableOpacity onPress={() => navigation.navigate("SignInScreen")} 
+            style={styles.signInButton}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
         </View>
