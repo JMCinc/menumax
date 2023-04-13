@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   View,
   Text,
@@ -9,7 +8,14 @@ import {
 } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
+import { navigate } from '../../navigation'
+
 const OnboardingScreen = () => {
+
+const onPressButton = () => {
+  navigate('SignUp');
+};
+const navigation = useNavigation();
   return (
     <ImageBackground
       source={require('../../../assets/images/menumax_bg.jpg')}
@@ -26,11 +32,11 @@ const OnboardingScreen = () => {
         </Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")} 
+          <TouchableOpacity onPress={onPressButton} 
              style={styles.signUpButton}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("SignInScreen")} 
+          <TouchableOpacity onPress={() => navigation.navigate("SignIn")} 
             style={styles.signInButton}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>

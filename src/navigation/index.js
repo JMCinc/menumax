@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import{useEffect, useState} from 'react';
+import * as React from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -18,7 +19,10 @@ import {Auth, Hub} from 'aws-amplify';
 
 import { Foundation, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 
+
 const Stack = createNativeStackNavigator();
+
+export const navigationRef = React.createRef();
 
 const RootNavigator = () => {
     const [user, setUser] = useState(undefined);
@@ -42,8 +46,7 @@ const RootNavigator = () => {
         checkUser();
       }
     };
-
-    Hub.listen('auth', listener);
+Hub.listen('auth', listener);
     return () => Hub.remove('auth', listener);
   }, []);
 
@@ -60,20 +63,23 @@ const RootNavigator = () => {
          {user ? (
           <Stack.Screen name="HomeTabs" component={HomeTabs}/>
         ) : (
-        <>
+      <>
       <Stack.Screen name="OnboardingScreen" component={OnboardingStackNavigator} />
-      <Stack.Screen name="SignIn" component={SignInScreen} />
-            <Stack.Screen name="SignUp" component={SignUpScreen} />
-            <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
-            <Stack.Screen
-              name="ForgotPassword"
-              component={ForgotPasswordScreen}
+      <Stack.Screen name="SignIn" component={SignInStackNavigator} />
+<Stack.Screen name="SignUp" component={SignUpStackNavigator} />
+<Stack.Screen name="ConfirmEmail" component={ConfirmEmailStackNavigator} 
+/>     
+<Stack.Screen   name="ForgotPassword"       component={ForgotPasswordStackNavigator}
             />
-            <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+<Stack.Screen name="NewPassword" component={NewPasswordStackNavigator} />
       </>
         )}
     </Stack.Navigator>
   );
+};
+
+export function navigate(name, params){
+  navigationRef.current?.navigate(name, params);
 };
 
 const Tab = createMaterialBottomTabNavigator();
@@ -119,6 +125,56 @@ const OnboardingStackNavigator = () => {
      <OnboardingStack.Navigator>
       <OnboardingStack.Screen name="Onboarding" component={OnboardingScreen} />
      </OnboardingStack.Navigator>
+  );
+};
+
+const SignInStack = createNativeStackNavigator();
+
+const SignInStackNavigator = () => {
+  return (
+     <SignInStack.Navigator>
+      <SignInStack.Screen name="SignIn" component={SignInScreen} />
+     </SignInStack.Navigator>
+  );
+};
+
+const SignUpStack = createNativeStackNavigator();
+
+const SignUpStackNavigator = () => {
+  return (
+     <SignUpStack.Navigator>
+      <SignUpStack.Screen name="SignUp" component={SignUpScreen} />
+     </SignUpStack.Navigator>
+  );
+};
+
+const ConfirmEmailStack = createNativeStackNavigator();
+
+const ConfirmEmailStackNavigator = () => {
+  return (
+     <ConfirmEmailStack.Navigator>
+      <ConfirmEmailStack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
+     </ConfirmEmailStack.Navigator>
+  );
+};
+
+const ForgotPasswordStack = createNativeStackNavigator();
+
+const ForgotPasswordStackNavigator = () => {
+  return (
+     <ForgotPasswordStack.Navigator>
+      <ForgotPasswordStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+     </ForgotPasswordStack.Navigator>
+  );
+};
+
+const NewPasswordStack = createNativeStackNavigator();
+
+const NewPasswordStackNavigator = () => {
+  return (
+     <NewPasswordStack.Navigator>
+      <NewPasswordStack.Screen name="NewPassword" component={NewPasswordScreen} />
+     </NewPasswordStack.Navigator>
   );
 };
 
